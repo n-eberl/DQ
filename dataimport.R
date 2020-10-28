@@ -15,3 +15,16 @@ db <- odbcDriverConnect(paste0("DRIVER={SQL Server};
 
 sql="SELECT * FROM schema.TabellenName" 
 df <- sqlQuery(db,sql)
+
+Ausreiser <-
+  TabellenName %>%
+  diagnose_outlier() %>%
+  select(variables, outliers_ratio) %>%
+  filter(outliers_ratio > 0)
+
+calcAusreiser <- colSums(Ausreiser[,-1]) / nrow(Ausreiser)
+
+
+print(calcAusreiser)
+
+
