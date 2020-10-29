@@ -18,6 +18,8 @@ df <- sqlQuery(db,sql)
 
 TabellenName <- #Tabelle zuweißen
 
+  
+  ## Ausreiser berechnen
 Ausreiser <-
   TabellenName %>%
   diagnose_outlier() %>%
@@ -29,7 +31,7 @@ calcAusreiser <- colSums(Ausreiser[,-1]) / nrow(Ausreiser)
 
 print(calcAusreiser)
 
-
+  ## Eindeutigkeit
 Doppel <- 
   TabellenName %>%
   diagnose() %>%
@@ -38,3 +40,15 @@ Doppel <-
 
 calcDoppel <- 1- (colSums(Doppel[,-1]) / nrow(Doppel))
 print(calcDoppel)
+
+
+  ## Aktualität der Tabelle
+
+## bei einem Pfad
+p <- R.home()
+file.info(p)$ctime
+
+
+## Mehrere Pfade
+paths <- dir(R.home(), full.names=TRUE)
+tail(file.info(paths)$ctime)
