@@ -16,6 +16,8 @@ db <- odbcDriverConnect(paste0("DRIVER={SQL Server};
 sql="SELECT * FROM schema.TabellenName" 
 df <- sqlQuery(db,sql)
 
+TabellenName <- #Tabelle zuweißen
+
 Ausreiser <-
   TabellenName %>%
   diagnose_outlier() %>%
@@ -28,3 +30,11 @@ calcAusreiser <- colSums(Ausreiser[,-1]) / nrow(Ausreiser)
 print(calcAusreiser)
 
 
+Doppel <- 
+  TabellenName %>%
+  diagnose() %>%
+  select(variables, unique_rate) %>%
+  filter(unique_rate > 0)
+
+calcDoppel <- 1- (colSums(Doppel[,-1]) / nrow(Doppel))
+print(calcDoppel)
