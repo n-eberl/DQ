@@ -1,4 +1,12 @@
+install.packages("RODBC")
+install.packages("dplyr")
+install.packages("dlookr")
+install.packages("nycflights13")
+
 library(RODBC) # RODBC Package für die Verbindung zu einem SQL Server
+library(dplyr)
+library(dlookr)
+library(nycflighs13)
 
 my_server="ServerName"
 my_db="DatenbankName"
@@ -16,7 +24,9 @@ db <- odbcDriverConnect(paste0("DRIVER={SQL Server};
 sql="SELECT * FROM schema.TabellenName" 
 df <- sqlQuery(db,sql)
 
-TabellenName <- #Tabelle zuweißen
+# Testtabelle
+TabellenName <- flights
+
 
   
   ## Ausreiser berechnen
