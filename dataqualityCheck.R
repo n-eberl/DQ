@@ -3,10 +3,10 @@ install.packages("dplyr")
 install.packages("dlookr")
 install.packages("nycflights13")
 
-library(RODBC) # RODBC Package für die Verbindung zu einem SQL Server
-library(dplyr)
-library(dlookr)
-library(nycflighs13)
+library("RODBC") # RODBC Package für die Verbindung zu einem SQL Server
+library("dplyr")
+library("dlookr")
+library("nycflights13")
 
 my_server="ServerName"
 my_db="DatenbankName"
@@ -28,31 +28,33 @@ df <- sqlQuery(db,sql)
 TabellenName <- flights
 
 
-  
-  ## Ausreiser berechnen
+## Vollständigkeit berechnen
+
+
+## Ausreiser berechnen
 Ausreiser <-
   TabellenName %>%
   diagnose_outlier() %>%
   select(variables, outliers_ratio) %>%
   filter(outliers_ratio > 0)
 
-calcAusreiser <- colSums(Ausreiser[,-1]) / nrow(Ausreiser)
+calcAusreiser <-  100 - colSums(Ausreiser[,-1]) / nrow(Ausreiser)
 
 
 print(calcAusreiser)
 
-  ## Eindeutigkeit
+## Eindeutigkeit
 Doppel <- 
   TabellenName %>%
   diagnose() %>%
   select(variables, unique_rate) %>%
   filter(unique_rate > 0)
 
-calcDoppel <- 1- (colSums(Doppel[,-1]) / nrow(Doppel))
+calcDoppel <- (1- (colSums(Doppel[,-1]) / nrow(Doppel)) )*100
 print(calcDoppel)
 
 
-  ## Aktualität der Tabelle
+## Aktualität der Tabelle
 
 ## bei einem Pfad
 p <- R.home()
