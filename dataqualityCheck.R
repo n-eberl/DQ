@@ -2,11 +2,13 @@ install.packages("RODBC")
 install.packages("dplyr")
 install.packages("dlookr")
 install.packages("nycflights13")
+install.packages("caret")
 
 library("RODBC") # RODBC Package für die Verbindung zu einem SQL Server
 library("dplyr")
 library("dlookr")
 library("nycflights13")
+library("caret")
 
 my_server="ServerName"
 my_db="DatenbankName"
@@ -29,6 +31,11 @@ TabellenName <- flights
 
 
 ## Vollständigkeit berechnen
+Fehlende <-
+  (1 - sum(is.na(TabellenName))/prod(dim(TabellenName))) * 100
+
+print(Fehlende)
+
 
 
 ## Ausreiser berechnen
@@ -56,11 +63,52 @@ print(calcDoppel)
 
 ## Aktualität der Tabelle
 
-## bei einem Pfad
-p <- R.home()
-file.info(p)$ctime
+# bei einem Pfad
+indicator <- 100.00
+TabellenName <- R.home()
+startDate <- as.POSIXct(file.info(TabellenName)$ctime)
+endDate <- Sys.time()
+
+calcDate <- endDate - startDate
+calcDatenum <- as.numeric(calcDate)
 
 
-## Mehrere Pfade
+if (calcDatenum == 0){
+  indicator <- 100
+  print(indicator)
+}
+if (calcDatenum > 5 && calcDatenum < 10){
+  indicator - 2.5
+  print(indicator)
+}
+if (calcDatenum > 10 && calcDatenum < 15){
+  indicator - 5.0
+  print(indicator)
+}
+if (calcDatenum > 15 && calcDatenum < 20){
+  indicator - 7.5
+  print(indicator)
+} 
+if (calcDatenum > 20 && calcDatenum < 25){
+  indicator <- 100 - 10
+  print(indicator)
+}
+if (calcDatenum > 25 && calcDatenum < 30){
+  indicator - 12.5
+  print(indicator)
+}
+if (calcDatenum > 30){
+  indicator - 15
+  print(indicator)
+}
+if (calcDatenum > 31){
+  indicator - 50
+  print(indicator)
+}
+
+
+
+# Mehrere Pfade
 paths <- dir(R.home(), full.names=TRUE)
 tail(file.info(paths)$ctime)
+
