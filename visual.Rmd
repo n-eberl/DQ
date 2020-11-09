@@ -1,0 +1,50 @@
+---
+title: "Datenqualität GEIGER"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+```
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Aktualität der Tabelle
+
+```{r}
+gauge(indicator,  min = 0, max = 100, symbol = '%', gaugeSectors(
+  success = c(96, 100), warning = c(90, 95), danger = c(0, 89)
+))
+
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Vollständigkeit
+
+```{r}
+gauge(Fehlende,  min = 0, max = 100, symbol = '%', gaugeSectors(
+  success = c(96, 100), warning = c(90, 95), danger = c(0, 89)
+))
+
+```
+
+### Ausreiser
+
+```{r}
+gauge(calcAusreiserInt,  min = 0, max = 100, symbol = '%', gaugeSectors(
+  success = c(96, 100), warning = c(90, 95), danger = c(0, 89)
+))
+```
+### Eindeutigkeit
+
+```{r}
+gauge(calcDoppelInt,  min = 0, max = 100, symbol = '%', gaugeSectors(
+  success = c(96, 100), warning = c(90, 95), danger = c(0, 89)
+))
+```

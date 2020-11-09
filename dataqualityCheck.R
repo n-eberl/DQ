@@ -47,6 +47,7 @@ Ausreiser <-
 
 calcAusreiser <-  100 - colSums(Ausreiser[,-1]) / nrow(Ausreiser)
 
+calcAusreiserInt <- as.integer(calcAusreiser)
 
 print(calcAusreiser)
 
@@ -58,6 +59,8 @@ Doppel <-
   filter(unique_rate > 0)
 
 calcDoppel <- (1- (colSums(Doppel[,-1]) / nrow(Doppel)) )*100
+
+calcDoppelInt <- as.integer(calcDoppel)
 print(calcDoppel)
 
 
@@ -109,6 +112,16 @@ if (calcDatenum > 31){
 
 
 # Mehrere Pfade
-paths <- dir(R.home(), full.names=TRUE)
-tail(file.info(paths)$ctime)
+#paths <- dir(R.home(), full.names=TRUE)
+#tail(file.info(paths)$ctime)
+
+
+
+final <- (Fehlende + calcAusreiser + indicator + calcDoppel) / 4
+print(final)
+
+df <- data.frame(Fehlende, calcAusreiser, indicator, calcDoppel)
+df
+
+
 
