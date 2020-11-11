@@ -47,4 +47,16 @@ gauge(calcAusreiserInt,  min = 0, max = 100, symbol = '%', gaugeSectors(
 gauge(calcDoppelInt,  min = 0, max = 100, symbol = '%', gaugeSectors(
   success = c(96, 100), warning = c(90, 95), danger = c(0, 89)
 ))
+
+
+```
+
+### Datenqualität
+
+```{r}
+gauge(finalInt,  min = 0, max = 100, symbol = '%', gaugeSectors(
+  success = c(96, 100), warning = c(90, 95), danger = c(0, 89)
+))
+
+
 ```

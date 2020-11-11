@@ -118,6 +118,7 @@ if (calcDatenum > 31){
 
 
 final <- (Fehlende + calcAusreiser + indicator + calcDoppel) / 4
+finalInt <- as.integer(final)
 print(final)
 
 df <- data.frame(Fehlende, calcAusreiser, indicator, calcDoppel)
