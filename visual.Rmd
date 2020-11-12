@@ -16,9 +16,10 @@ Column {data-width=650}
 ### Aktualität der Tabelle
 
 ```{r}
-gauge(indicator,  min = 0, max = 100, symbol = '%', gaugeSectors(
+gauge(indicator,  min = 0, max = 100, symbol = '%',label = "Aktualität", gaugeSectors(
   success = c(96, 100), warning = c(90, 95), danger = c(0, 89)
 ))
+
 
 ```
 
@@ -28,7 +29,7 @@ Column {data-width=350}
 ### Vollständigkeit
 
 ```{r}
-gauge(Fehlende,  min = 0, max = 100, symbol = '%', gaugeSectors(
+gauge(Fehlende,  min = 0, max = 100, symbol = '%',label = "Vollständig", gaugeSectors(
   success = c(96, 100), warning = c(90, 95), danger = c(0, 89)
 ))
 
@@ -37,14 +38,14 @@ gauge(Fehlende,  min = 0, max = 100, symbol = '%', gaugeSectors(
 ### Ausreiser
 
 ```{r}
-gauge(calcAusreiserInt,  min = 0, max = 100, symbol = '%', gaugeSectors(
+gauge(calcAusreiserInt,  min = 0, max = 100, symbol = '%',label = "Normalität", gaugeSectors(
   success = c(96, 100), warning = c(90, 95), danger = c(0, 89)
 ))
 ```
 ### Eindeutigkeit
 
 ```{r}
-gauge(calcDoppelInt,  min = 0, max = 100, symbol = '%', gaugeSectors(
+gauge(calcDoppelInt,  min = 0, max = 100, symbol = '%',label = "Eindeutigkeit", gaugeSectors(
   success = c(96, 100), warning = c(90, 95), danger = c(0, 89)
 ))
 
@@ -54,7 +55,7 @@ gauge(calcDoppelInt,  min = 0, max = 100, symbol = '%', gaugeSectors(
 ### Datenqualität
 
 ```{r}
-gauge(finalInt,  min = 0, max = 100, symbol = '%', gaugeSectors(
+gauge(finalInt,  min = 0, max = 100, symbol = '%', label = "Datenqualität", gaugeSectors(
   success = c(96, 100), warning = c(90, 95), danger = c(0, 89)
 ))
 
