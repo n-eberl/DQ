@@ -3,6 +3,8 @@ install.packages("dplyr")
 install.packages("dlookr")
 install.packages("nycflights13")
 install.packages("caret")
+install.packages("lattice")
+install.packages("ggplot2")
 
 library("RODBC") # RODBC Package für die Verbindung zu einem SQL Server
 library("dplyr")
@@ -33,6 +35,7 @@ TabellenName <- flights
 ## Vollständigkeit berechnen
 Fehlende <-
   (1 - sum(is.na(TabellenName))/prod(dim(TabellenName))) * 100
+
 
 print(Fehlende)
 

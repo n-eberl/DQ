@@ -2,20 +2,21 @@
 title: "Datenqualität GEIGER"
 output: 
   flexdashboard::flex_dashboard:
-    orientation: columns
+    orientation: rows
     vertical_layout: fill
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include=TRUE}
+knitr::opts_chunk$set(echo = TRUE)
 library(flexdashboard)
 ```
 
-Column {data-width=650}
+Row {data-height=100}
 -----------------------------------------------------------------------
 
 ### Aktualität der Tabelle
 
-```{r}
+```{r Akutalität, echo=TRUE}
 gauge(indicator,  min = 0, max = 100, symbol = '%',label = "Aktualität", gaugeSectors(
   success = c(96, 100), warning = c(90, 95), danger = c(0, 89)
 ))
